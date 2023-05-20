@@ -1,0 +1,48 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
+{
+	"name": "DeepLearningAI",
+	"build": {
+		// Sets the run context to one level up instead of the .devcontainer folder.
+		"context": "..",
+		// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
+		"dockerfile": "../Dockerfile",
+		"args": {
+			"BUILD_ENV": "localdev"
+		},
+		"containerEnv": {
+			"DEBUG": "True"
+		}
+	},
+	
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Uncomment the next line to run commands after the container is created.
+	"postCreateCommand": "apt-get update && apt-get install -y git && pip --disable-pip-version-check --no-cache-dir install -r /tmp/requirements.txt echo",
+
+	// Configure tool-specific properties.
+	
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-toolsai.jupyter",
+				"GitHub.copilot",
+				"GitHub.copilot-labs"
+			],
+			"settings": {
+				"terminal.integrated.env.linux": {
+					"OPENAI_API_KEY": "${env:OPENAI_API_KEY}"
+				}
+			   
+			}
+		}
+	},
+
+	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "root"
+}

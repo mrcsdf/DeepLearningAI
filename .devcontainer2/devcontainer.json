@@ -1,0 +1,10 @@
+{
+    "name": "rust",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "Swellaby.rust-pack"
+            ]
+        }
+    }
+}
